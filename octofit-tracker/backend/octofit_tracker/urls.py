@@ -6,6 +6,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.routers import DefaultRouter
 
+
+# Dynamically construct the base_url for API endpoints using the CODESPACE_NAME environment variable.
+# This ensures correct URLs for both Codespace and localhost environments.
 codespace_name = os.environ.get('CODESPACE_NAME')
 if codespace_name:
     base_url = f"https://{codespace_name}-8000.app.github.dev"
