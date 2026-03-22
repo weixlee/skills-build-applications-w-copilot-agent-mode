@@ -12,8 +12,6 @@ if codespace_name:
 else:
     base_url = "http://localhost:8000"
 
-router = DefaultRouter()
-
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -24,13 +22,17 @@ def api_root(request, format=None):
             'endpoints': {
                 'health': f'{base_url}/api/health/',
                 'goals': f'{base_url}/api/goals/',
+                'users': f'{base_url}/api/users/',
+                'teams': f'{base_url}/api/teams/',
+                'activities': f'{base_url}/api/activities/',
+                'workouts': f'{base_url}/api/workouts/',
+                'leaderboards': f'{base_url}/api/leaderboards/',
             },
         }
     )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', api_root, name='api-root'),
-    path('api/', include(router.urls)),
     path('api/', include('tracker_api.urls')),
+    path('', api_root, name='api-root'),
 ]
